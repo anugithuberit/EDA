@@ -1,0 +1,50 @@
+# Create Student Performance Dataset
+student_data <- data.frame(
+  Student_ID = c(1,2,3,4,5,6,7,8),
+  Marks = c(85, 90, 45, 78, 60, 95, 30, 88),
+  Attendance = c(92, 88, 65, 75, 80, 98, 55, 90),
+  Grade = c("A", "A", "C", "B", "B", "A", "D", "A")
+)
+
+# Display Original Dataset
+print("Original Dataset:")
+print(student_data)
+
+# Row Filtering for Data Cleaning
+# Filter students with Marks > 50 and Attendance > 70
+cleaned_data <- subset(student_data,
+                        Marks > 50 & Attendance > 70)
+
+# Display Cleaned Dataset
+print("Cleaned Dataset:")
+print(cleaned_data)
+
+# 1. Bar Plot - Student Marks
+barplot(cleaned_data$Marks,
+        names.arg = cleaned_data$Student_ID,
+        col = "skyblue",
+        main = "Student Marks",
+        xlab = "Student ID",
+        ylab = "Marks")
+
+# 2. Pie Chart - Grade Distribution
+grade_count <- table(cleaned_data$Grade)
+
+pie(grade_count,
+    col = rainbow(length(grade_count)),
+    main = "Grade Distribution")
+
+# 3. Histogram - Attendance
+hist(cleaned_data$Attendance,
+     col = "lightgreen",
+     main = "Attendance Distribution",
+     xlab = "Attendance")
+
+# 4. Scatter Plot - Marks vs Attendance
+plot(cleaned_data$Attendance,
+     cleaned_data$Marks,
+     col = "red",
+     pch = 19,
+     main = "Marks vs Attendance",
+     xlab = "Attendance",
+     ylab = "Marks")
