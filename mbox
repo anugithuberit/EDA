@@ -1,0 +1,30 @@
+import mailbox
+import pandas as pd
+import matplotlib.pyplot as plt
+
+mb = mailbox.mbox("E:/BA/All mail Including Spam and Trash.mbox")
+
+dates = []
+
+for msg in mb:
+    dates.append(msg["Date"])
+
+df = pd.DataFrame(dates, columns=["Date"])
+
+df["Date"] = pd.to_datetime(df["Date"], errors="coerce", utc=True)
+
+df = df.dropna()
+
+df["Year"] = df["Date"].dt.year
+
+year_count = df["Year"].value_counts().sort_index()
+
+print("\nEmails per year:\n")
+print(year_count)
+
+plt.plot(year_count.index, year_count.values, marker="o")
+plt.title("Emails Per Year")
+plt.xlabel("Year")
+plt.ylabel("Number of Emails")
+plt.grid(True)
+plt.show()
