@@ -1,0 +1,99 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Read CSV File
+df = pd.read_csv("weather.csv")
+
+# Convert Date column to datetime
+df['Date'] = pd.to_datetime(df['Date'])
+
+# 1. Filter temperature above 35°C
+high_temp = df[df['Temperature'] > 35]
+
+print("Days where temperature is above 35°C:")
+print(high_temp)
+
+# 2. Handle missing humidity values using mean replacement
+mean_humidity = df['Humidity'].mean()
+df['Humidity'].fillna(mean_humidity, inplace=True)
+
+print("\nDataset after replacing missing humidity values:")
+print(df)
+
+# 3. Plot Temperature Trend
+plt.figure(figsize=(8,5))
+plt.plot(df['Date'], df['Temperature'], marker='o', label='Temperature')
+plt.title("Temperature Trend")
+plt.xlabel("Date")
+plt.ylabel("Temperature (°C)")
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# 4. Plot Rainfall Trend
+plt.figure(figsize=(8,5))
+plt.plot(df['Date'], df['Rainfall'], marker='o', label='Rainfall')
+plt.title("Rainfall Trend")
+plt.xlabel("Date")
+plt.ylabel("Rainfall (mm)")
+plt.legend()
+plt.grid(True)
+plt.show()
+
+
+//
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Create Weather Dataset
+data = {
+    'Date': ['2024-01-01', '2024-01-02', '2024-01-03',
+             '2024-01-04', '2024-01-05', '2024-01-06'],
+    'Temperature': [32, 36, 38, 34, 37, 33],
+    'Humidity': [65, np.nan, 70, 75, np.nan, 68],
+    'Windspeed': [12, 15, 10, 14, 13, 11],
+    'Rainfall': [5, 0, 2, 8, 1, 4]
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# Convert Date column to datetime format
+df['Date'] = pd.to_datetime(df['Date'])
+
+# 1. Filter temperature above 35°C
+high_temp = df[df['Temperature'] > 35]
+
+print("Days where temperature is above 35°C:")
+print(high_temp)
+
+# 2. Handle missing values in Humidity using mean replacement
+mean_humidity = df['Humidity'].mean()
+df['Humidity'].fillna(mean_humidity, inplace=True)
+
+print("\nDataset after replacing missing humidity values:")
+print(df)
+
+# 3. Plot Temperature Trend
+plt.figure(figsize=(8,5))
+plt.plot(df['Date'], df['Temperature'],
+         marker='o', label='Temperature')
+plt.title("Temperature Trend")
+plt.xlabel("Date")
+plt.ylabel("Temperature (°C)")
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# 4. Plot Rainfall Trend
+plt.figure(figsize=(8,5))
+plt.plot(df['Date'], df['Rainfall'],
+         marker='o', label='Rainfall')
+plt.title("Rainfall Trend")
+plt.xlabel("Date")
+plt.ylabel("Rainfall (mm)")
+plt.legend()
+plt.grid(True)
+plt.show()
