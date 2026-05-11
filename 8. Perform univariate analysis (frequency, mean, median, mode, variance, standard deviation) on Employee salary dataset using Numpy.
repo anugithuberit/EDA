@@ -1,0 +1,36 @@
+import pandas as pd
+import numpy as np
+from collections import Counter
+
+# Read CSV file
+df = pd.read_csv("employee_salary.csv")
+
+# Convert Salary column to NumPy array
+salary = np.array(df['Salary'])
+
+# Frequency
+frequency = Counter(salary)
+
+# Mean
+mean_salary = np.mean(salary)
+
+# Median
+median_salary = np.median(salary)
+
+# Mode
+mode_salary = Counter(salary).most_common(1)[0][0]
+
+# Variance
+variance_salary = np.var(salary)
+
+# Standard Deviation
+std_salary = np.std(salary)
+
+# Display Results
+print("Employee Salary Dataset:", salary)
+print("Frequency:", frequency)
+print("Mean:", mean_salary)
+print("Median:", median_salary)
+print("Mode:", mode_salary)
+print("Variance:", variance_salary)
+print("Standard Deviation:", std_salary)
