@@ -1,0 +1,19 @@
+import folium
+
+# Native place location (Example: Tirunelveli)
+native_place = [8.7139, 77.7567]
+
+# Create map
+m = folium.Map(location=native_place, zoom_start=12)
+
+# Add marker with rollover and interaction
+folium.Marker(
+    native_place,
+    popup="Welcome to Tirunelveli!",
+    tooltip="My Native Place"
+).add_to(m)
+
+# Save map
+m.save("native_place_map.html")
+
+print("Map created successfully!")
