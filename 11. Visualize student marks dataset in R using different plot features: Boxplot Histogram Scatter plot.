@@ -1,0 +1,31 @@
+# Create Student Marks Dataset
+student_data <- data.frame(
+  Student_ID = c(1,2,3,4,5,6,7,8,9,10),
+  Marks = c(85, 90, 78, 65, 88, 92, 70, 60, 95, 80),
+  Attendance = c(90, 95, 85, 70, 88, 96, 75, 68, 98, 82)
+)
+
+# Display Dataset
+print("Student Dataset:")
+print(student_data)
+
+# 1. Boxplot for Marks
+boxplot(student_data$Marks,
+        col = "lightblue",
+        main = "Boxplot of Student Marks",
+        ylab = "Marks")
+
+# 2. Histogram for Marks
+hist(student_data$Marks,
+     col = "lightgreen",
+     main = "Histogram of Student Marks",
+     xlab = "Marks")
+
+# 3. Scatter Plot (Marks vs Attendance)
+plot(student_data$Attendance,
+     student_data$Marks,
+     col = "red",
+     pch = 19,
+     main = "Scatter Plot of Marks vs Attendance",
+     xlab = "Attendance",
+     ylab = "Marks")
