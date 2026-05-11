@@ -1,0 +1,72 @@
+# Step 1: Import required libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Step 2: Load Wine Quality Dataset
+# Replace with your file path
+df = pd.read_csv("winequality.csv")
+
+# Display first few rows
+print("Wine Quality Dataset:")
+print(df.head())
+
+# Step 3: Data Cleaning
+
+# Check missing values
+print("\nMissing Values:")
+print(df.isnull().sum())
+
+# Remove duplicate rows
+df = df.drop_duplicates()
+
+# Check data types
+print("\nData Types:")
+print(df.dtypes)
+
+# Step 4: Identify Patterns and Relationships
+
+# Statistical summary
+print("\nStatistical Summary:")
+print(df.describe())
+
+# Correlation matrix
+correlation = df.corr()
+
+print("\nCorrelation Matrix:")
+print(correlation)
+
+# Step 5: Visualization
+
+# 1. Histogram of Wine Quality
+plt.figure(figsize=(5,4))
+plt.hist(df['quality'])
+plt.title("Wine Quality Distribution")
+plt.xlabel("Quality")
+plt.ylabel("Frequency")
+plt.show()
+
+# 2. Scatter Plot: Alcohol vs Quality
+plt.figure(figsize=(5,4))
+plt.scatter(df['alcohol'], df['quality'])
+plt.title("Alcohol vs Wine Quality")
+plt.xlabel("Alcohol")
+plt.ylabel("Quality")
+plt.show()
+
+# 3. Correlation Heatmap
+plt.figure(figsize=(8,6))
+plt.imshow(correlation)
+plt.colorbar()
+plt.xticks(range(len(correlation.columns)),
+           correlation.columns,
+           rotation=90)
+plt.yticks(range(len(correlation.columns)),
+           correlation.columns)
+plt.title("Correlation Heatmap")
+plt.show()
+
+# Step 6: Insights
+print("\nInsights:")
+print("1. Higher alcohol content may relate to better wine quality.")
+print("2. Some chemical properties influence wine quality.")
+print("3. Dataset cleaned successfully with no duplicate values.")
