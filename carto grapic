@@ -1,0 +1,29 @@
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+# Load world countries dataset
+world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+
+# Plot Countries of the World
+plt.figure(figsize=(10, 6))
+world.plot(edgecolor='black')
+plt.title("Countries of the World Map")
+plt.show()
+
+# Load India States Dataset (GeoJSON/Shapefile)
+india_states = gpd.read_file("india_states.geojson")
+
+# Plot States of India
+plt.figure(figsize=(10, 6))
+india_states.plot(edgecolor='black', cmap='Set3')
+plt.title("States of India Map")
+plt.show()
+
+# Load India Districts Dataset
+india_districts = gpd.read_file("india_districts.geojson")
+
+# Plot Districts of India
+plt.figure(figsize=(10, 6))
+india_districts.plot(edgecolor='black', cmap='viridis')
+plt.title("Districts of India Map")
+plt.show()
