@@ -1,0 +1,43 @@
+import matplotlib.pyplot as plt
+
+# Dataset
+study_hours = [1, 2, 3, 4, 5, 6, 7, 8]
+marks = [35, 42, 50, 58, 65, 72, 80, 88]
+error = [2, 3, 2, 4, 3, 2, 3, 2]
+
+# Create figure
+plt.figure(figsize=(8,5))
+
+# Line Plot
+plt.plot(study_hours, marks, color='blue',
+         marker='o', label='Line Plot')
+
+# Scatter Plot
+plt.scatter(study_hours, marks,
+            color='red', label='Scatter Plot')
+
+# Error Bars
+plt.errorbar(study_hours, marks,
+             yerr=error, fmt='o',
+             color='green', capsize=5,
+             label='Error Bars')
+
+# Labels and Title
+plt.title("Student Marks vs Study Hours")
+plt.xlabel("Study Hours")
+plt.ylabel("Marks")
+
+# Legend
+plt.legend()
+
+# Annotation
+plt.annotate('Highest Marks',
+             xy=(8, 88),
+             xytext=(6, 75),
+             arrowprops=dict(facecolor='black'))
+
+# Grid
+plt.grid(True)
+
+# Show Plot
+plt.show()
