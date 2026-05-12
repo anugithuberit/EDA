@@ -1,0 +1,61 @@
+# Step 1: Import required libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Step 2: Create WhatsApp dataset
+data = {
+    'User': ['A','B','A','C','B','A','C','B','A','C'],
+    'Message': ['Hi','Hello','How are you?','Good Morning',
+                'Fine','Okay','Thank You','Bye',
+                'See You','Good Night'],
+    'Time': ['08:00','09:00','10:00','11:00',
+             '12:00','13:00','14:00','15:00',
+             '16:00','20:00']
+}
+
+# Step 3: Import into Pandas DataFrame
+df = pd.DataFrame(data)
+
+# Display dataset
+print("WhatsApp Dataset:")
+print(df)
+
+# Step 4: Message Count
+message_count = df['User'].value_counts()
+
+print("\nMessage Count:")
+print(message_count)
+
+# Step 5: Visualize Features
+
+# 1. Message Count Bar Chart
+plt.figure(figsize=(5,4))
+message_count.plot(kind='bar')
+plt.title("Message Count by User")
+plt.xlabel("User")
+plt.ylabel("Number of Messages")
+plt.show()
+
+# 2. Active Users Pie Chart
+plt.figure(figsize=(5,4))
+message_count.plot(kind='pie', autopct='%1.1f%%')
+plt.title("Active Users")
+plt.ylabel("")
+plt.show()
+
+# 3. Time Pattern Analysis
+df['Hour'] = pd.to_datetime(df['Time']).dt.hour
+time_pattern = df['Hour'].value_counts().sort_index()
+
+plt.figure(figsize=(6,4))
+plt.plot(time_pattern.index, time_pattern.values, marker='o')
+plt.title("Message Time Pattern")
+plt.xlabel("Hour of Day")
+plt.ylabel("Number of Messages")
+plt.show()
+
+# Step 6: Insights
+print("\nInsights:")
+print("1. User A sent the highest number of messages.")
+print("2. Activity is higher during daytime hours.")
+print("3. User participation is distributed among all users.")
