@@ -1,0 +1,64 @@
+# Step 1: Import required libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Step 2: Create/Load Email Dataset
+data = {
+    'Email_ID': [1,2,3,4,5,6,7,8,9,10],
+    'Sender': ['A','B','C','D','E','F','G','H','I','J'],
+    'Email_Length': [120, 300, 250, 180, 500, 220, 150, 450, 280, 350],
+    'Spam': ['No', 'Yes', 'No', 'No', 'Yes', 'No', 'Yes', 'Yes', 'No', 'Yes']
+}
+
+# Step 3: Convert to DataFrame
+df = pd.DataFrame(data)
+
+# Display dataset
+print("Email Dataset:")
+print(df)
+
+# Dataset Information
+print("\nDataset Info:")
+print(df.info())
+
+# Statistical Summary
+print("\nStatistical Summary:")
+print(df.describe())
+
+# Check Missing Values
+print("\nMissing Values:")
+print(df.isnull().sum())
+
+# Step 4: Visualize Key Features
+
+# Bar chart for Spam vs Non-Spam
+spam_count = df['Spam'].value_counts()
+
+plt.figure(figsize=(5,4))
+spam_count.plot(kind='bar')
+plt.title("Spam vs Non-Spam Emails")
+plt.xlabel("Category")
+plt.ylabel("Count")
+plt.show()
+
+# Histogram of Email Length
+plt.figure(figsize=(5,4))
+plt.hist(df['Email_Length'])
+plt.title("Email Length Distribution")
+plt.xlabel("Email Length")
+plt.ylabel("Frequency")
+plt.show()
+
+# Scatter Plot: Email ID vs Email Length
+plt.figure(figsize=(5,4))
+plt.scatter(df['Email_ID'], df['Email_Length'])
+plt.title("Email ID vs Email Length")
+plt.xlabel("Email ID")
+plt.ylabel("Email Length")
+plt.show()
+
+# Step 5: Meaningful Insights
+print("\nInsights:")
+print("1. Spam emails appear more frequently in longer emails.")
+print("2. Non-spam emails generally have shorter lengths.")
+print("3. The dataset has no missing values.")
